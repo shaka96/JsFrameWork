@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1>Ponderings</h1>
+		</header>
+		<section id="quotes"></section>
+		<script type="text/javascript">
+			/* 会以window.require的形式自动附加在全局window对象上。
+			 */
+			var require = {
+				baseUrl: '/scripts',
+				deps: ['quotes-view'],
+				callback: function(quotesView) {
+					quotesView.addQuote('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+					quotesView.addQuote('Nunc non purus faucibus justo tristique porta.');
+				}
+			}
+		</script>
+		<script src="./scripts/require.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
