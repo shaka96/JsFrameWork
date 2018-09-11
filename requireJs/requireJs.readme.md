@@ -77,7 +77,8 @@ requirejs.config({
 >shim下的每个key定义的是需要被添加垫片的模块别名，分配给这些key的对象指定了该垫片如何工作。
 >RequireJS通过定义一个空的AMD模块，由普通脚本/一个三方库，返回一个global对象来创建一个shim。
 
-undrln.js
+[example-005](https://github.com/shaka96/JsFrameWork/tree/master/requireJs/example-005/public)
+[undrln.js](https://github.com/shaka96/JsFrameWork/tree/master/requireJs/example-005/public/scripts/vendor/undrln/undrln.js)
 	undrln创建了全局的window._对象，因此，在shim的配置中指定undrln导出的模块名叫  _。
 最后生成的RequireJS的shim模块看起来像如下模块：
 ```
@@ -85,3 +86,18 @@ define({'undrln', [], function(){
 	return window._;
 });
 ```
+[jquery.highlight.js](https://github.com/shaka96/JsFrameWork/tree/master/requireJs/example-005/public/scripts/util/jquery.highlight.js)
+
+为何不把第二个highlight参数在jquery-all模块的闭包函数里声明？
+1. 当RequireJS在模块间计算依赖时，会基于模块的层次模式创建一个内部的依赖树。
+> （这样可确定最佳时间来加载任何特定模块，从叶子节点开始，向树干加载。
+> 本例中‘树干’是jquery-all模块，最远的叶子节点是highlight所依赖的jquery模块。）
+> RequireJS将按照以下顺序执行模块的闭包：jquery，highlight， jqurey-all。
+
+2. highlight模块没有返回值，仅用于附加作用————为了在jQuery对象上添加一个插件。
+> (没有参数传递给jquery-all模块，因为highlight没有返回值。
+> 因此， 仅用于附加作用的依赖应该始终被放置在模块依赖列表的末尾。)
+
+### 加载器插件
+[example-006](https://github.com/shaka96/JsFrameWork/tree/master/requireJs/example-006/public)
+[handlebars](https://github.com/shaka96/JsFrameWork/tree/master/requireJs/example-006/public/scripts/handlebars-v4.0.12.js)

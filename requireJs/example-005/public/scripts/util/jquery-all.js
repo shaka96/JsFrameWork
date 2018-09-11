@@ -1,6 +1,6 @@
 //jquery-all.js
 define(['jquery'], function($){
-	$.fn.addQuotes = function(){
+	$.fn.addQuotes = function(attribution, quotes){
 		 console.log('addQuotes')
 		};
 	return $;

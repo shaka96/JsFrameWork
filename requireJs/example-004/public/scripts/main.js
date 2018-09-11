@@ -10,14 +10,19 @@
 //			'quotes-view': 'quotes-view',
 			'quotes': 'data/quotes',
 			'undrln': 'vendor/undrln',
+
 		},
 		shim: {
 			//为undrln定义shim
 			undrln: {
 				exports: '_'
+			},
+			highlight: {
+				deps: ['jquery']
 			}
 		}
 	});
+
 	//kickoff ，启动
 	requirejs(['quotes','quotes-view'], function(quoteData, quotesView){
 		quotesView.addQuote('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
